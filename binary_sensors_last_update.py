@@ -1,27 +1,36 @@
-from homeassistant.core import HomeAssistant
-from homeassistant.helpers.service import async_register_domain_service
+import logging
+from homeassistant.core import HomeAssistant, ServiceCall
+from homeassistant.helpers import service
 import sqlite3
 
+_LOGGER = logging.getLogger(__name__)
+
 async def async_setup(hass: HomeAssistant, config):
+    _LOGGER.info("Setting up binary_sensors_last_update component")
+    
     conn = sqlite3.connect('/config/home-assistant_v2.db')
     cursor = conn.cursor()
     
-    # Example function to read data
-    def read_data():
+    async def read_data(call: ServiceCall):
         cursor.execute("SELECT * FROM binary_sensors_last_update")
-        return cursor.fetchall()
+        data = cursor.fetchall()
+        _LOGGER.info("Data fetched: %s", data)
+        return data
     
-    # Example function to write data
-    def write_data(sensor_id, value):
+    async def write_data(call: ServiceCall):
+        sensor_id = call.data.get("sensor_id")
+        value = call.data.get("value")
         cursor.execute("INSERT INTO binary_sensors_last_update (sensor_id, value) VALUES (?, ?)", (sensor_id, value))
         conn.commit()
     
-    # Register services
-    async_register_domain_service(hass, "binary_sensors_last_update", "read_data", read_data)
-    async_register_domain_service(hass, "binary_sensors_last_update", "write_data", write_data)
+    hass.services.async_register(
+        "binary_sensors_last_update", "read_data", read_data
+    )
+    hass.services.async_register(
+        "binary_sensors_last_update", "write_data", write_data
+    )
     
     return True
 
 async def async_setup_entry(hass: HomeAssistant, entry):
     return await async_setup(hass, {})
-
