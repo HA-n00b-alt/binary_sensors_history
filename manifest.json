@@ -12,5 +12,6 @@
       "service": "log_test",
       "description": "Log a test message for debugging purposes"
     }
-  ]
+  ],
+  "iot_class": "local_polling"
 }

@@ -1,6 +1,7 @@
 import logging
 from homeassistant import config_entries
 from homeassistant.core import HomeAssistant
+from voluptuous import Schema, Optional
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -29,11 +30,7 @@ class BinarySensorsHistoryConfigFlow(config_entries.ConfigFlow, domain="binary_s
 
     def _create_schema(self):
         """Return the schema for the user input form."""
-        from homeassistant.helpers import config_validation as cv
-        from voluptuous import Optional
-
-        return {
+        # Use Voluptuous Schema directly here
+        return Schema({
             Optional("debug", default=False): bool,  # Add debug option to the form
-        }
-
-
+        })
