@@ -1,0 +1,19 @@
+binary_sensors_last_update:
+  description: "Binary Sensors Last Update Service"
+  services:
+    read_data:
+      description: "Read data from binary_sensors_last_update table"
+      fields:
+        sensor_id:
+          description: "Sensor ID"
+          type: "string"
+    write_data:
+      description: "Write data to binary_sensors_last_update table"
+      fields:
+        sensor_id:
+          description: "Sensor ID"
+          type: "string"
+        value:
+          description: "Value to write"
+          type: "string"
+
