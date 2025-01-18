@@ -1,10 +1,16 @@
 {
   "domain": "binary_sensors_history",
   "name": "Binary Sensors History",
-  "version": "1.0.0",
-  "documentation": "https://github.com/HA-n00b-alt/binary_sensors_history.git",
+  "version": "1.0",
+  "documentation": "https://github.com/HA-n00b-alt/binary_sensors_history",
   "dependencies": [],
   "codeowners": ["@HA-n00b-alt"],
-  "requirements": []
+  "requirements": [],
+  "config_flow": true,
+  "services": [
+    {
+      "service": "log_test",
+      "description": "Log a test message for debugging purposes"
+    }
+  ]
 }
-
