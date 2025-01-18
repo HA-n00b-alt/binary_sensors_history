@@ -1,0 +1,10 @@
+{
+  "domain": "binary_sensors_last_update",
+  "name": "Binary Sensors Last Update",
+  "version": "0.1",
+  "documentation": "https://github.com/HA-n00b-alt/binary_sensors_history.git",
+  "dependencies": [],
+  "codeowners": ["@HA-n00b-alt"],
+  "requirements": []
+}
+
