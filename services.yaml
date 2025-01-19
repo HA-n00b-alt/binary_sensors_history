@@ -1,3 +1,0 @@
-log_test:
-  description: "Logs the string 'PIPPO' to the Home Assistant log"
-  fields: {}
